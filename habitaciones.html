@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/habitaciones.css">
+    <style>
+        header {
+            background-color: #421807;
+            height: 130px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        header img {
+            width: 15%;
+            height: auto;
+        }
+        footer {
+            background-color: #421807;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            margin-top: 100px;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif; /* Cambiar la fuente del texto */
+        }
+        p {
+            font-weight: bold; /* Texto en negrita por defecto */
+        }
+        .circle {
+            width: 80px; /* Cambia el tamaño del círculo */
+            height: 80px; /* Cambia el tamaño del círculo */
+            background-color: #ccc;
+            border-radius: 50%;
+        }
+        .info p {
+            font-weight: normal; /* Quita la negrita para estos elementos p */
+        }
+        .info {
+            width: calc(100% - 100px); /* Calcula el ancho de la columna de texto */
+        }
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px; /* Espaciado entre filas */
+        }
+        .map-container {
+            width: 100%;
+            height: 500px; /* Ajusta la altura del mapa según lo necesites */
+            border-radius: 20px; /* Bordes redondeados */
+            overflow: hidden; /* Oculta cualquier contenido que se desborde */
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%; /* El iframe debe ocupar todo el espacio del contenedor */
+            border: 0; /* Elimina el borde del iframe */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <img id="header-image" src="./assets/StayPandaHere.png" alt="">
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p>Información del Arrendador</p>
+                <div class="row">
+                    <div class="col-auto"> <!-- Columna para el círculo -->
+                        <div class="circle"></div>
+                    </div>
+                    <div class="col info"> <!-- Columna para el texto -->
+                        <p>Nombre:</p>
+                        <p>Edad</p>
+                        <p>Número:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <p>Información del Alojamiento</p>
+        </div>
+        <div id="container" class="row">
+            <div class="col">
+                <p>Ubicación</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6"> <!-- Columna para el mapa -->
+                <div class="map-container">
+                    <!-- Mapa de Google Maps Embed API -->
+                    <iframe id="mapa" width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=-12.0442794204298,-76.95116391076502&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
+                </div>
+            </div>
+            <div class="col">
+                <p>Imágenes del alojamiento</p>
+                <p>Precio</p>
+            </div>
+        </div>
+        <div class="col">
+            <p>Descripción</p>
+        </div>
+        <div class="col">
+            <p>Opiniones</p>
+        </div>
+    </div>
+    <!-- "Footer"-->
+    <footer>
+        Aquí va el contenido del footer.
+    </footer>
+
+    <script>
+        // Función para agregar el marcador de casa al mapa
+        function agregarMarcadorCasa() {
+            var mapa = document.getElementById('mapa');
+            mapa.contentWindow.postMessage('{"event":"addMarker","lat": -12.043954147829243, "lng": -76.95126047028485, "icon": "https://maps.google.com/mapfiles/kml/shapes/homegardenbusiness.png"}', '*');
+        }
+        // Llama a la función después de que el iframe se haya cargado
+        window.addEventListener('load', agregarMarcadorCasa);
+    </script>
+</body>
+</html>
